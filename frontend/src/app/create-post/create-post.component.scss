@@ -1,0 +1,37 @@
+.create-post{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 20px;
+  background: var(--white-color);
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+
+  input, textarea{
+    margin-bottom: 12px;
+    width: 100%;
+    font-family: var(--regular-font);
+  }
+  label{
+    margin-bottom: 5px;
+    font-family: var(--bold-font);
+    font-size: 16px;
+  }
+
+}
+
+.create-post__images{
+
+}
+
+.create-post__text{
+
+}
+
+.create-post__date{
+
+}
+
+.create-post__submit{
+  width: 100%;
+}

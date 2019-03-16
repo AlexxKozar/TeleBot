@@ -1,0 +1,34 @@
+<div class="posts-page">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-12 col-md-4">
+        <h2>Published posts</h2>
+        <ul>
+          <li *ngFor="let post of posts" >
+            <div *ngIf="post.status == 'published'">
+              <app-display-post [post]=post></app-display-post>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <h2>Waiting for publish</h2>
+        <ul>
+          <li *ngFor="let post of posts" >
+            <div *ngIf="post.status == 'waiting'">
+              <app-display-post [post]=post></app-display-post>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <h2>Create post</h2>
+        <app-create-post></app-create-post>
+      </div>
+    </div>
+
+  </div>
+</div>

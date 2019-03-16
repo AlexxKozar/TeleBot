@@ -1,0 +1,15 @@
+:root {
+  --accent-color: #34a575;
+  --support-color: #fafafa;
+  --black-color: #000;
+  --white-color: #fff;
+  --error-color: rgb(255,20,0);
+  --info-color: rgb(0,140,225);
+  --success-color: rgb(0,255,0);
+  --black-font: sans-serif;
+  --bold-font: sans-serif;
+  --regular-font: sans-serif;
+  --medium-font: sans-serif;
+  --light-font: sans-serif; }
+
+/*# sourceMappingURL=variables.css.map */

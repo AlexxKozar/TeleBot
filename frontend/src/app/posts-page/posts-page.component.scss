@@ -1,0 +1,17 @@
+.posts-page{
+  background: var(--light-gray-color);
+  min-height: 100vh;
+  padding: 20px 0;
+
+  h1{
+    margin: 0 auto;
+    font-family: var(--bold-font);
+    font-size: 24px;
+  }
+
+  h2{
+    font-family: var(--bold-font);
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}

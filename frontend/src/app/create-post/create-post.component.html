@@ -1,0 +1,30 @@
+<form class="create-post" [formGroup]="createPostForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label for="create-post__images">Choose images:</label>
+    <input id="create-post__images" class="create-post__images" formControlName="images" type="file" accept="image/*" multiple>
+  </div>
+
+  <div class="form-group">
+    <label for="create-post__text">Add text:</label>
+    <textarea id="create-post__text" class="create-post__text" formControlName="text" name="text" cols="30" rows="5"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="create-post__date">Publish date</label>
+    <input id="create-post__date" class="create-post__date" formControlName="date" name="date" type="date">
+  </div>
+
+  <div class="form-group">
+    <label for="create-post__time">Publish time</label>
+    <input id="create-post__time" class="create-post__time" formControlName="time" name="time" type="time">
+  </div>
+
+  <button (click)="resetValues()">Reset</button>
+  <button class="create-post__submit" [disabled]="!createPostForm.valid">Submit</button>
+
+  <p>
+    Form Status: {{ createPostForm.status }}
+  </p>
+
+</form>

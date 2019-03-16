@@ -1,0 +1,15 @@
+<div class="display-post">
+
+  <div class="display-post__remove" (click)="removePost()">
+    <div></div>
+    <div></div>
+  </div>
+
+  <span class="display-post__files-label">Images</span>
+  <p *ngFor="let image of post.images">{{image}}</p>
+  <span class="display-post__text-label">Text</span>
+  <p>{{post.description}}</p>
+  <span class="display-post__date-label">Date</span>
+  <p>{{post.date}}</p>
+
+</div>
