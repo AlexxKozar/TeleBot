@@ -16,6 +16,12 @@ dotenv.config();
 const port = process.env.PORT || process.env.APP_PORT;
 
 
+// Adding publisher to request
+app.use(function(req, res, next){
+  req.publisher = publisher;
+  next(); 
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -49,12 +55,7 @@ mongoose.connection
 
 
 
-// Adding publisher to request
-app.use(function(req, res, next){
-  console.log(123)
-  req.publisher = publisher;
-  next(); 
-})
+
 
 
 // error handler

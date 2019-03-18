@@ -19,7 +19,11 @@ export const addOneToCollection = (collection, name) => {
 
 export const getPostToPublish = async () => (
   await PostModel
-  .find()
-  .sort('-date')
+  .find({status: 'waiting'})
+  .sort('date')
   .limit(1)
+)
+
+export const changePostStatus = (id, newStatus) => (
+  PostModel.update({_id: id}, {status: newStatus})
 )

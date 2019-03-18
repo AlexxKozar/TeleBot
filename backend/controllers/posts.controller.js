@@ -15,7 +15,7 @@ export const getPosts = (req, res, next) => {
     .then(posts => {
 
       console.log("Get posts");
-      console.log(posts);
+      //console.log(posts);
 
       res.status(200).json({
         status: 'ok',
@@ -45,7 +45,9 @@ export const addPost = (req, res, next) => {
     .then(post => {
 
       console.log("Create post");
-      console.log(post);
+      //console.log(post);
+
+      req.publisher.push(post)
 
       res.status(201).json({
         status: 'created',

@@ -13,18 +13,16 @@ export default class Publisher{
         const post = await this.getPostToPublish();
 
         if(post) {
-            this.postToPublish = post;
+            this.postToPublish = post[0];
             console.log('Added post to publisher');
             console.log(post);
         }
         
-        const timer = setInterval(() => {
-
-            //clearInterval(timer);
+        setInterval(async () => {
       
             console.log('Publisher works');
 
-            if(this.postToPublish && Date.now() == this.postToPublish.date){
+            if(this.postToPublish && Date.now() >= this.postToPublish.date){
                 
                 console.log('Post will be published');
                 console.log(this.postToPublish)
@@ -32,15 +30,31 @@ export default class Publisher{
                 this.publishPost(this.postToPublish);
                 this.postToPublish = null;
 
+                const nextPost = await this.getPostToPublish();
+                if(nextPost) {
+                    this.postToPublish = nextPost[0];
+                    console.log('Added post to publisher');
+                    console.log(nextPost);
+                }
+
             };
           }, period)
 
     }
 
-    pushPost(post){
-        post.date <= this.postToPublish.date ? this.postToPublish = post : null;
-        console.log('Pushed post to publisher');
-        console.log(post);
+    push(post){
+
+        console.log("Push to publisher")
+        console.log(this.postToPublish)
+        console.log(!this.postToPublish)
+        console.log(post)
+
+        if(!this.postToPublish || post.date <= this.postToPublish.date){
+            console.log('Pushed post to publisher');
+            this.postToPublish = post;
+            console.log(post);
+        }
+        
     }
 
 } 
