@@ -1,28 +1,32 @@
-import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
-import logger from 'morgan';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import postsRouter from './routes/posts.router';
 
+import {startPublisher} from './utils/publisher/';
+
+
 const app = express();
+const publisher = startPublisher();
 
 dotenv.config();
+const port = process.env.PORT || process.env.APP_PORT;
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+  
 // Allow CORS
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -32,18 +36,9 @@ app.use((req, res, next) => {
 });
 
 
+// Routers
 app.use('/api/posts', postsRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-
-
-
-
-const port = process.env.PORT || process.env.APP_PORT;
 
 // Connect to database
 mongoose.connect(`${process.env.MONGODB_URI_LOCAL}/${process.env.DB_DATABASE}`, { useNewUrlParser: true });
@@ -52,6 +47,14 @@ mongoose.connection
   .once('connected', () => console.log(`Connected to Database on ${process.env.MONGODB_URI_LOCAL}`))
   .on('error', () => console.error.bind(console, 'connection error:'));
 
+
+
+// Adding publisher to request
+app.use(function(req, res, next){
+  console.log(123)
+  req.publisher = publisher;
+  next(); 
+})
 
 
 // error handler
@@ -65,10 +68,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`App Server Listening at ${port}`);
 });
-
-
-module.exports = app;

@@ -1,3 +1,5 @@
+import PostModel from '../../models/post.model';
+
 export const addOneToCollection = (collection, name) => {
   collection.find({name:name})
     .then( res => {
@@ -14,3 +16,10 @@ export const addOneToCollection = (collection, name) => {
     })
     .catch(err => {throw(err)});
 };
+
+export const getPostToPublish = async () => (
+  await PostModel
+  .find()
+  .sort('-date')
+  .limit(1)
+)
