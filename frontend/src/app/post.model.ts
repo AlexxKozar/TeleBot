@@ -1,6 +1,6 @@
-export class Post {
+export default class Post {
   id: number;
-  images: string[];
+  // images: string[];
   text: string;
   date: string;
   isPublished: boolean;

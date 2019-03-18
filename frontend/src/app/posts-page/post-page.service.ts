@@ -2,6 +2,7 @@ import {Injectable, EventEmitter, Output} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
+import PostModel from '../post.model';
 
 @Injectable()
 export class PostPageService {
@@ -10,7 +11,7 @@ export class PostPageService {
 
   error: any;
 
-  @Output() posts: EventEmitter<Array<object>> = new EventEmitter();
+  @Output() posts: EventEmitter<Array<PostModel>> = new EventEmitter();
 
   constructor(private http: HttpClient) {
   }
@@ -34,9 +35,9 @@ export class PostPageService {
 
   getPosts() {
 
-    this.http.get<Object>(this.apiPath)
+    this.http.get<PostModel>(this.apiPath)
       .pipe(catchError(this.handleError))
-      .subscribe((data: Object) => {
+      .subscribe((data: PostModel) => {
 
         console.log("Data from server");
         console.log(data);
@@ -53,15 +54,15 @@ export class PostPageService {
 
     const body = {
       description: post.text,
-      images: post.images,
-      date: post.date,
+      //images: post.images,
+      date: post.date+' '+post.time,
       status: "waiting"
     };
 
     console.log('Putting post');
     console.log(body);
 
-    return this.http.put<Object>(this.apiPath, body)
+    return this.http.put<PostModel>(this.apiPath, body)
       .pipe(
         catchError(this.handleError)
       );

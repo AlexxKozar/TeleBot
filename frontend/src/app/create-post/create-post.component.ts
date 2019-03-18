@@ -11,9 +11,9 @@ import {PostPageService} from "../posts-page/post-page.service";
 export class CreatePostComponent implements OnInit {
 
   createPostForm = this.fb.group({
-    images: [''],
+    // images: [''],
     text: ['', Validators.required],
-    date: [''],
+    date: ['', Validators.required],
     time: ['', Validators.required]
   });
 
@@ -33,7 +33,6 @@ export class CreatePostComponent implements OnInit {
         console.log(res);
         this.postPageService.getPosts();
       });
-
   }
 
   resetValues() {

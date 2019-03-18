@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PostPageService} from './post-page.service';
+import PostModel from '../post.model';
 
 @Component({
   selector: 'app-posts-page',
@@ -9,15 +10,15 @@ import {PostPageService} from './post-page.service';
 })
 export class PostsPageComponent implements OnInit {
 
-  posts: Array<object>;
+  posts: Array<PostModel>;
   error: any;
 
   constructor(private postPageService: PostPageService) {
   }
 
   ngOnInit() {
-    this.postPageService.getPosts();
-    this.postPageService.posts.subscribe(posts => {
+      this.postPageService.getPosts();
+      this.postPageService.posts.subscribe(posts => {
       this.posts = posts
     })
   }

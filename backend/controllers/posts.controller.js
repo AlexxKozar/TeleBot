@@ -14,7 +14,7 @@ export const getPosts = (req, res, next) => {
     .find(searchSettings)
     .then(posts => {
 
-      console.log("Posts find");
+      console.log("Get posts");
       console.log(posts);
 
       res.status(200).json({
@@ -22,7 +22,6 @@ export const getPosts = (req, res, next) => {
         code: 200,
         posts: posts,
       })
-        .catch(error => next(error))
     })
     .catch(error => next(error));
 
@@ -31,13 +30,13 @@ export const getPosts = (req, res, next) => {
 export const addPost = (req, res, next) => {
 
 
-  console.log("Put");
+  console.log("Put post");
   console.log(req.body);
 
   const post = {
     description: req.body.description,
     images: req.body.images,
-    date: req.body.date,
+    date: new Date(req.body.date),
     status: req.body.status
   };
 
@@ -53,8 +52,6 @@ export const addPost = (req, res, next) => {
         code: 201,
         recipeId: post._id,
       })
-        .catch(error => next(error))
-
     })
     .catch(error => next(error))
 
@@ -64,7 +61,7 @@ export const addPost = (req, res, next) => {
 export const removePost = (req, res, next) => {
 
   const postId = req.params.id;
-  console.log('postId');
+  console.log('Remove post');
   console.log(postId);
 
   PostModel.deleteOne({
@@ -76,7 +73,6 @@ export const removePost = (req, res, next) => {
         deletedCount: query.deletedCount,
         deletedId: id,
       })
-      .catch(error => next(error))
     )
     .catch(error => next(error))
 };
