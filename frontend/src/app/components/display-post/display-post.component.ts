@@ -1,8 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {PostPageService} from "../posts-page/post-page.service";
-import PostModel from '../post.model';
+import PostModel from '../../models/post.model';
 
-import { formatDate } from '../../utils/';
+import { formatDate } from '../../../utils/';
 
 @Component({
   selector: 'app-display-post',

@@ -5,11 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CreatePostComponent } from './create-post/create-post.component';
-import { DisplayPostComponent } from './display-post/display-post.component';
-import { PostsPageComponent } from './posts-page/posts-page.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { DisplayPostComponent } from './components/display-post/display-post.component';
+import { PostsPageComponent } from './components/posts-page/posts-page.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
   ],
   providers: [],
   bootstrap: [AppComponent]
