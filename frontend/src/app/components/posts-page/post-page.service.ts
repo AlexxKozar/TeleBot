@@ -35,9 +35,9 @@ export class PostPageService {
 
   getPosts() {
 
-    this.http.get<PostModel>(this.apiPath)
+    this.http.get<PostModel[]>(this.apiPath)
       .pipe(catchError(this.handleError))
-      .subscribe((data: PostModel) => {
+      .subscribe((data: PostModel[]) => {
 
         console.log("Data from server");
         console.log(data);
