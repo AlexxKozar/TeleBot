@@ -6,15 +6,15 @@ import {
     MetaReducer 
 } from '@ngrx/store';
 
-import * as fromPosts from './posts';
+import * as postsReducer from './posts';
 
 
 export interface State {
-    posts: fromPosts.State
+  postsPage: postsReducer.PostsState
 }
 
 export const reducers: ActionReducerMap<State> = {
-    posts: fromPosts.reducer
+  postsPage: postsReducer.reducer
 };
 
 
@@ -33,10 +33,10 @@ export const metaReducers: MetaReducer<State>[] = [logger];
 
 // Selectors
 
-export const getPostsState = createFeatureSelector<fromPosts.State>('posts');
+export const selectPostsPage = createFeatureSelector<State, postsReducer.PostsState>('postsPage');
 
 
-export const getPosts = createSelector(
-    getPostsState,
-    fromPosts.getPosts
+export const selectPosts = createSelector(
+    selectPostsPage,
+    postsReducer.selectPostsState
 )

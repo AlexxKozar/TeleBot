@@ -3,5 +3,5 @@ export default interface Post {
   // images: string[];
   text: string;
   date: string;
-  isPublished: boolean;
+  status: string;
 }

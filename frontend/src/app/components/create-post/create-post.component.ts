@@ -31,7 +31,12 @@ export class CreatePostComponent implements OnInit {
     this.postPageService.putPost(post)
       .subscribe(res => {
         console.log(res);
-        this.postPageService.getPosts();
+        this.postPageService.getPosts().subscribe(data => {
+          console.log("Data from server");
+          console.log(data);
+
+          this.postPageService.getPostsFromStore();
+        });
       });
   }
 

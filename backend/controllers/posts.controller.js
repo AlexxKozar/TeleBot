@@ -15,7 +15,6 @@ export const getPosts = (req, res, next) => {
     .then(posts => {
 
       console.log("Get posts");
-      //console.log(posts);
 
       res.status(200).json({
         status: 'ok',
@@ -45,7 +44,6 @@ export const addPost = (req, res, next) => {
     .then(post => {
 
       console.log("Create post");
-      //console.log(post);
 
       req.publisher.push(post)
 
@@ -56,7 +54,6 @@ export const addPost = (req, res, next) => {
       })
     })
     .catch(error => next(error))
-
 };
 
 
@@ -69,13 +66,14 @@ export const removePost = (req, res, next) => {
   PostModel.deleteOne({
     _id: postId
   })
-    .then(query => res.status(200).json({
+    .then(query => {
+      res.status(200).json({
         status: 'ok',
         code: 200,
         deletedCount: query.deletedCount,
-        deletedId: id,
+        deletedId: postId,
       })
-    )
-    .catch(error => next(error))
+      .catch(error => next(error))
+    })
 };
 

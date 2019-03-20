@@ -4,16 +4,21 @@ import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
 import PostModel from '../../models/post.model';
 
+import { Store } from '@ngrx/store';
+import * as rootReducer from '../../store/reducers/';
+import * as postsActions from '../../store/actions/posts';
+
 @Injectable()
 export class PostPageService {
 
   apiPath = 'http://localhost:3000/api/posts';
-
   error: any;
+  posts: EventEmitter<Array<PostModel>> = new EventEmitter();
 
-  @Output() posts: EventEmitter<Array<PostModel>> = new EventEmitter();
-
-  constructor(private http: HttpClient) {
+  
+  constructor(
+    private http: HttpClient,
+    private store: Store<rootReducer.State>) {
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -34,20 +39,13 @@ export class PostPageService {
 
 
   getPosts() {
-
-    this.http.get<PostModel[]>(this.apiPath)
+    return this.http.get<PostModel[]>(this.apiPath)
       .pipe(catchError(this.handleError))
-      .subscribe((data: PostModel[]) => {
+  }
 
-        console.log("Data from server");
-        console.log(data);
-
-        this.posts.emit(data['posts']);
-
-        console.log("Posts");
-        console.log(this.posts);
-
-      })
+  getPostsFromStore(){
+    console.log('*******GET ALL POSTS FROM SERVER*******');
+    this.store.dispatch(new postsActions.AddManyAsync());
   }
 
   putPost(post) {

@@ -42,6 +42,10 @@ app.use((req, res, next) => {
 });
 
 
+
+
+
+
 // Routers
 app.use('/api/posts', postsRouter);
 
@@ -56,7 +60,7 @@ mongoose.connection
 
 
 
-
+  
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -67,6 +71,9 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+  
+
+  console.log(1234)
 });
 
 

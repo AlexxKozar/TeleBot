@@ -21,8 +21,8 @@ export class PostsEffects {
             return this.postsService
                 .getPosts()
                 .pipe(
-                    map(posts => new postsActions.AddOne(posts[0])),
-                    catchError(error => of(new postsActions.AddManyAsync(error)))
+                    map(posts => new postsActions.AddMany(posts)),
+                    catchError(error => of(new postsActions.AddError(error)))
                 )
         })
     )

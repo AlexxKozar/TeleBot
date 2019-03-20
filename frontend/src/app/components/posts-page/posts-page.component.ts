@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
   selector: 'app-posts-page',
   templateUrl: './posts-page.component.html',
   styleUrls: ['./posts-page.component.scss'],
-  providers: [PostPageService]
 })
 export class PostsPageComponent implements OnInit {
 
@@ -23,30 +22,20 @@ export class PostsPageComponent implements OnInit {
     private postPageService: PostPageService,
     private store: Store<rootReducer.State>
     ) {
-      this.posts$ = store.select(rootReducer.getPosts);
-      console.log("Posts$");
-      console.log(this.posts$);
-      console.log('Store');
-      this.posts$.subscribe(res => console.log(res))
+      this.posts$ = store.select(rootReducer.selectPosts);
+
+      this.posts$.subscribe(posts => {
+        this.posts = posts;
+      });
+      
+      this.postPageService.getPostsFromStore();
     }
 
 
-  ngOnInit() {
-      this.postPageService.getPosts();
-      this.postPageService.posts.subscribe(posts => {
-      this.posts = posts
+  ngOnInit() {}
 
-      this.onAdd();
-    })
-  }
-
-  onAdd(){
-    this.store.dispatch(new postsActions.AddOne({
-      id: 2,
-      text: 'bla',
-      date: '11.12.2019',
-      isPublished: false
-    }))
+  onAddManyAsync(){
+    this.store.dispatch(new postsActions.AddManyAsync())
   }
 
 }
