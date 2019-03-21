@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {PostPageService} from "../posts-page/post-page.service";
+import {PostPageService} from '../posts-page/post-page.service';
 import PostModel from '../../models/post.model';
 
 
@@ -19,14 +19,13 @@ export class DisplayPostComponent implements OnInit {
     }
 
   ngOnInit() {
-    const date = new Date(this.post['date']);
-    this.post['date'] = formatDate(date);
+    this.post['date'] = formatDate(new Date(this.post['date']));
   }
 
   removePost() {
     const postId = this.post['_id'];
 
-    console.log("Post id");
+    console.log('Post id');
     console.log(postId);
 
     this.postPageService.removePosts(postId)

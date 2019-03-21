@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 export class PostsPageComponent implements OnInit {
 
   posts: Array<PostModel>;
-  posts$: Observable<PostModel[]>
+  posts$: Observable<PostModel[]>;
   error: any;
 
   constructor(
@@ -27,15 +27,14 @@ export class PostsPageComponent implements OnInit {
       this.posts$.subscribe(posts => {
         this.posts = posts;
       });
-      
       this.postPageService.getPostsFromStore();
     }
 
 
   ngOnInit() {}
 
-  onAddManyAsync(){
-    this.store.dispatch(new postsActions.AddManyAsync())
+  onAddManyAsync() {
+    this.store.dispatch(new postsActions.AddManyAsync());
   }
 
 }

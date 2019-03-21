@@ -1,16 +1,16 @@
-import { 
-    ActionReducerMap, 
-    createSelector, 
+import {
+    ActionReducerMap,
+    createSelector,
     createFeatureSelector,
-    ActionReducer, 
-    MetaReducer 
+    ActionReducer,
+    MetaReducer
 } from '@ngrx/store';
 
 import * as postsReducer from './posts';
 
 
 export interface State {
-  postsPage: postsReducer.PostsState
+  postsPage: postsReducer.PostsState;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -20,7 +20,7 @@ export const reducers: ActionReducerMap<State> = {
 
 export function logger(reducer: ActionReducer<State>):
   ActionReducer<State> {
-    return function (state: State, action: any): State {
+    return (state: State, action: any): State => {
       console.log('state', state);
       console.log('action', action);
       return reducer(state, action);
@@ -39,4 +39,4 @@ export const selectPostsPage = createFeatureSelector<State, postsReducer.PostsSt
 export const selectPosts = createSelector(
     selectPostsPage,
     postsReducer.selectPostsState
-)
+);

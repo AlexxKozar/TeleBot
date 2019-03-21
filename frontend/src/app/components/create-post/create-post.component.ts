@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Validators} from '@angular/forms';
-import {PostPageService} from "../posts-page/post-page.service";
+import {PostPageService} from '../posts-page/post-page.service';
 
 @Component({
   selector: 'app-create-post',
@@ -32,7 +32,7 @@ export class CreatePostComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.postPageService.getPosts().subscribe(data => {
-          console.log("Data from server");
+          console.log('Data from server');
           console.log(data);
 
           this.postPageService.getPostsFromStore();

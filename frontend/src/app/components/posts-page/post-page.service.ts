@@ -1,7 +1,7 @@
 import {Injectable, EventEmitter, Output} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {catchError} from "rxjs/operators";
-import {throwError} from "rxjs";
+import {catchError} from 'rxjs/operators';
+import {throwError} from 'rxjs';
 import PostModel from '../../models/post.model';
 
 import { Store } from '@ngrx/store';
@@ -15,7 +15,6 @@ export class PostPageService {
   error: any;
   posts: EventEmitter<Array<PostModel>> = new EventEmitter();
 
-  
   constructor(
     private http: HttpClient,
     private store: Store<rootReducer.State>) {
@@ -43,7 +42,7 @@ export class PostPageService {
       .pipe(catchError(this.handleError))
   }
 
-  getPostsFromStore(){
+  getPostsFromStore() {
     console.log('*******GET ALL POSTS FROM SERVER*******');
     this.store.dispatch(new postsActions.AddManyAsync());
   }
@@ -52,9 +51,8 @@ export class PostPageService {
 
     const body = {
       description: post.text,
-      //images: post.images,
-      date: post.date+' '+post.time,
-      status: "waiting"
+      date: post.date + ' ' + post.time,
+      status: 'waiting'
     };
 
     console.log('Putting post');
