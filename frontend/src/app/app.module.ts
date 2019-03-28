@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { DisplayPostComponent } from './components/display-post/display-post.component';
 import { PostsPageComponent } from './components/posts-page/posts-page.component';
-import { PostPageService } from './components/posts-page/post-page.service';
+import { PostPageService } from './services/posts-page/post-page.service';
 
 import { ReactiveFormsModule } from '@angular/forms';
 

@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
-import { PostPageService } from '../components/posts-page/post-page.service';
+import { PostPageService } from '../services/posts-page/post-page.service';
 
 import * as postsActions from '../store/actions/posts';
 

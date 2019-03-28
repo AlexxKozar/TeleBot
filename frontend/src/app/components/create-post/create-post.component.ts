@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Validators} from '@angular/forms';
-import {PostPageService} from '../posts-page/post-page.service';
+import {PostPageService} from '../../services/posts-page/post-page.service';
 
 @Component({
   selector: 'app-create-post',

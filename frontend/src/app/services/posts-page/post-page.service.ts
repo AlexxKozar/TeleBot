@@ -5,7 +5,7 @@ import {throwError} from 'rxjs';
 import PostModel from '../../models/post.model';
 
 import { Store } from '@ngrx/store';
-import * as rootReducer from '../../store/reducers/';
+import * as rootReducer from '../../store/reducers';
 import * as postsActions from '../../store/actions/posts';
 
 @Injectable()

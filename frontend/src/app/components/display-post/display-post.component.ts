@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {PostPageService} from '../posts-page/post-page.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { PostPageService } from '../../services/posts-page/post-page.service';
 import PostModel from '../../models/post.model';
 
 

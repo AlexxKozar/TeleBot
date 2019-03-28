@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostPageService } from './post-page.service';
+import { PostPageService } from '../../services/posts-page/post-page.service';
 import PostModel from '../../models/post.model';
 
 import { Store } from '@ngrx/store';
